@@ -1,0 +1,27 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="/logo.webp?v=3" type="image/x-icon">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#6d74fc">
+<meta name="description" content="RideMate - The premier ride-sharing and carpooling platform for university students. Book a ride or offer a ride today!">
+<meta property="og:title" content="RideMate">
+<meta property="og:description" content="RideMate - The premier ride-sharing and carpooling platform for university students.">
+<meta property="og:image" content="/logo.webp?v=3">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker
+          .register("/service-worker.js")
+          .then(() => console.log("Service Worker registered"))
+          .catch((err) => console.error("Service Worker registration failed:", err));
+      });
+    }
+  </script>

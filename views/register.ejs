@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/fonts') %>
+        <title>Sign up</title>
+        <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div class="font-[Inter] flex flex-col items-center justify-between min-h-dvh  text-gray-900 z-10">
+
+        <div id="loader" class="hidden fixed inset-0 items-center justify-center bg-black bg-opacity-50 z-50">
+            <div class="w-12 h-12 border-4 border-[#6d74fc] border-t-transparent rounded-full animate-spin"></div>
+        </div>
+
+        <div class="max-w-md w-full p-8">
+            <div class="flex items-center justify-center">
+                <img src="/logo.webp?v=3" alt="Company Logo" class="w-36">
+            </div>
+
+            <div class="md:mt-8 mt-12">
+                <h2 class="text-start text-3xl font-bold text-[#6d74fc]">SIGN UP</h2>
+
+                <div class="bg-red-100 mt-2 border border-red-400 text-red-700 w-full py-3 rounded-lg relative <%= !error ? 'hidden' : '' %>"" role="
+                    alert">
+                    <span class="block sm:inline pl-4">
+                        <%= error ? error : '' %>
+                    </span>
+                    <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                        <svg class="fill-current h-6 w-6 text-red-500" onclick="closeErrorPage()" role="button"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <title>Close</title>
+                            <path
+                                d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+                        </svg>
+                    </span>
+                </div>
+
+                <form id="signup-form" class="space-y-6 mt-4" action="/register" method="POST"
+                    enctype="multipart/form-data">
+
+                    <div id="step-1" class="space-y-6 transition-transform duration-500 ease-in-out">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12">
+                            <div>
+                                <label for="firstname" class="text-sm font-medium leading-6">First name</label>
+                                <div>
+                                    <input id="firstname" name="firstName" type="text" required
+                                        class="w-full border-b-2 py-1.5 focus:outline-none placeholder:text-gray-400"
+                                        placeholder="First name">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="lastname" class="text-sm font-medium leading-6">Last name</label>
+                                <div>
+                                    <input id="lastname" name="lastName" type="text" required
+                                        class="w-full border-b-2 py-1.5 focus:outline-none placeholder:text-gray-400"
+                                        placeholder="Last name">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="email-address" class="text-sm font-medium leading-6">Email</label>
+                            <div class="relative w-full">
+                                <input id="email-address" name="email" type="email" autocomplete="email" required
+                                    class="w-full border-b-2 py-1.5 focus:outline-none placeholder:text-gray-400 pr-10"
+                                    placeholder="Enter your email">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="password" class="text-sm font-medium leading-6">Password</label>
+                            <div class="flex items-center relative">
+                                <input id="password" name="password" type="password" minlength="8"
+                                    placeholder="Password" required
+                                    class="w-full border-b-2 py-1.5 placeholder:text-gray-400 focus:outline-none">
+                                <button type="button" id="show-password"
+                                    class="cursor-pointer absolute inset-y-0 right-0 flex items-center pr-3">
+                                    <img src="/eye-svgrepo-com.svg" alt="eye" id="eyeImage" class="h-5 w-5">
+                                    <img src="/eye-password-hide-svgrepo-com.svg" alt="closeEye" id="CloseEyeImage"
+                                        class="h-5 w-5 hidden">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="step-2" class="space-y-6 hidden transition-transform duration-500 ease-in-out">
+                        <div>
+                            <label for="department" class="text-sm font-medium leading-6 ">Department</label>
+                            <div class="relative w-full max-w-md mx-auto">
+                                <input type="text" id="country-input" name="department"
+                                    placeholder="e.g Software Engineering" autocomplete="off"
+                                    class="w-full border-b-2 py-1.5 focus:outline-none placeholder:text-gray-400">
+                                <div id="autocomplete-list"
+                                    class="absolute z-10 w-full bg-white border border-gray-300 rounded-md hidden">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="phone-number" class="text-sm font-medium leading-6">Phone Number</label>
+                            <input id="phone-number" name="phone" type="hidden" maxlength="10" minlength="10" autocomplete="tel"
+                                required pattern="^[6-9][0-9]{9}$" title="Enter a valid 10-digit mobile number."
+                                class="w-full border-b-2 py-1.5 focus:outline-none placeholder:text-gray-400"
+                                placeholder="9876543210">
+                        </div>
+                        <div>
+                            <label for="image" class="text-sm font-medium leading-6">Profile Picture</label>
+                            <input id="image" name="img" type="hidden" required accept=".jpg, .jpeg, .png, .heic"
+                                class="w-full text-sm file:mr-4 file:rounded-md file:border-0 file:bg-[#5e63d0] file:py-2 file:px-4 file:text-sm file:font-semibold hover:file:cursor-pointer file:text-white hover:file:bg-[#9297fc] focus:outline-none disabled:pointer-events-none disabled:opacity-60" />
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between">
+                        <button type="button" id="back-btn" onclick="previousStep()"
+                            class="w-1/4 py-2 px-4 text-md font-semibold rounded-md text-white bg-gray-400 hover:bg-gray-600 hidden">
+                            Back
+                        </button>
+                        <button type="submit" id="next-btn"
+                            class="w-full py-2 px-4 text-md font-semibold rounded-md text-white bg-[#6d74fc] hover:bg-[#5e63d0]">
+                            Next
+                        </button>
+                        <button type="submit" id="signup-btn"
+                            class="w-full py-2 px-4 ml-2 text-md font-semibold rounded-md text-white bg-[#6d74fc] hover:bg-[#5e63d0] hidden">
+                            Sign Up
+                        </button>
+                    </div>
+                </form>
+                <p class="mt-4 text-center text-sm text-gray-500">
+                    Already have an account?
+                    <a href="/login" class="font-medium text-[#6d74fc] hover:text-[#5e63d0]">
+                        Login
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="mb-4 flex text-start">
+            <p class="text-sm text-gray-400">© 2025 RideMate. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+<script src="/register/script.js"></script>
+
+</html>
