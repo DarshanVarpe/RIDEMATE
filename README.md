@@ -13,15 +13,19 @@ RideMate is a comprehensive ride-sharing platform designed to help university st
 ---
 
 ## 📸 Project Preview
-*(Add screenshots of your application here)*
 
-| Home Page | Dashboard |
+| Home Page | About |
 | --- | --- |
-| ![Home](https://via.placeholder.com/400x250?text=Home+Page+Screenshot) | ![Dashboard](https://via.placeholder.com/400x250?text=Dashboard+Screenshot) |
+| ![Home](<img width="1470" height="956" alt="Screenshot 2026-07-20 at 5 15 22 PM" src="https://github.com/user-attachments/assets/77a725ef-f1b5-49d1-be4c-4c3e4ece4db3" />
+) | ![About](<img width="1470" height="956" alt="Screenshot 2026-07-20 at 5 27 06 PM" src="https://github.com/user-attachments/assets/7c266fdf-1212-4b8e-9cea-493f641bd55c" />
+) |
 
 | Create Ride | Login Page |
 | --- | --- |
-| ![Create Ride](https://via.placeholder.com/400x250?text=Create+Ride+Screenshot) | ![Login](https://via.placeholder.com/400x250?text=Login+Page+Screenshot) |
+| ![Create Ride](<img width="1470" height="956" alt="Screenshot 2026-07-20 at 5 18 38 PM" src="https://github.com/user-attachments/assets/c67d48d5-5767-4bb5-b0ae-16220625b851" />
+
+) | ![Login](<img width="1470" height="956" alt="Screenshot 2026-07-20 at 5 19 08 PM" src="https://github.com/user-attachments/assets/98ed3424-a338-405f-9b32-71333d1ce1f7" />
+) |
 
 ---
 
@@ -165,7 +169,7 @@ Upon deployment, the application threw persistent 500 Internal Server errors dur
 
 **Darshan Varpe**
 - **GitHub:** [DarshanVarpe](https://github.com/DarshanVarpe)
-- **LinkedIn:** *(Add your LinkedIn link here)*
+- **LinkedIn:** [DarshanVarpe](https://www.linkedin.com/in/darshanvarpe/)
 
 ## 📄 License
 This project is licensed under the MIT License.
