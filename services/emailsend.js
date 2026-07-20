@@ -1,4 +1,4 @@
-
+const { google } = require('googleapis');
 
 async function sendemail(Url, email, firstName, lastName) {
 
@@ -52,34 +52,51 @@ async function sendemail(Url, email, firstName, lastName) {
 </html>
 `;
 
-  // --- Brevo (Sendinblue) HTTP API Logic ---
-  try {
-    const response = await fetch('https://api.brevo.com/v3/smtp/email', {
-      method: 'POST',
-      headers: {
-        'accept': 'application/json',
-        'api-key': process.env.BREVO_API_KEY,
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        sender: {
-          name: 'RideMate',
-          email: process.env.BREVO_SENDER_EMAIL || 'sigmamale2332@gmail.com' // MUST match the verified Brevo email
-        },
-        to: [
-          { email: email, name: firstName + " " + lastName }
-        ],
-        subject: 'Password Reset Request',
-        htmlContent: emailTemplate
-      })
-    });
+  // --- Official Google Gmail API Logic ---
+  const OAuth2 = google.auth.OAuth2;
+  const oauth2Client = new OAuth2(
+    process.env.GOOGLE_CLIENT_ID,
+    process.env.GOOGLE_CLIENT_SECRET,
+    "https://developers.google.com/oauthplayground"
+  );
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`Brevo HTTP Error: ${response.status} - ${errorText}`);
-    }
+  oauth2Client.setCredentials({
+    refresh_token: process.env.GOOGLE_REFRESH_TOKEN
+  });
+
+  const gmail = google.gmail({ version: 'v1', auth: oauth2Client });
+
+  const subject = 'Password Reset Request';
+  const utf8Subject = `=?utf-8?B?${Buffer.from(subject).toString('base64')}?=`;
+  
+  const messageParts = [
+    `From: RideMate <${process.env.GMAIL_USER || 'darshanvarpe@gmail.com'}>`,
+    `To: ${email}`,
+    'Content-Type: text/html; charset=utf-8',
+    'MIME-Version: 1.0',
+    `Subject: ${utf8Subject}`,
+    '',
+    emailTemplate
+  ];
+  
+  const message = messageParts.join('\n');
+  
+  // Gmail API requires base64url format
+  const encodedMessage = Buffer.from(message)
+    .toString('base64')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/, '');
+
+  try {
+    await gmail.users.messages.send({
+      userId: 'me',
+      requestBody: {
+        raw: encodedMessage
+      }
+    });
   } catch (error) {
-    throw new Error(`Brevo provider error: ${error.message || 'Unknown'}`);
+    throw new Error(`Gmail API provider error: ${error.message || 'Unknown'}`);
   }
 }
 
