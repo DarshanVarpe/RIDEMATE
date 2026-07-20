@@ -58,7 +58,6 @@ CLOUDINARY_API_SECRET=your_api_secret
 JWT_SECRET=your_jwt_secret
 PORT=3000
 GMAIL_USER=your_personal_gmail_address
-GMAIL_APP_PASSWORD=your_16_character_app_password
 CLIENT_URL=http://localhost:3000
 GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_CLIENT_SECRET=your_google_client_secret

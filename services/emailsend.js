@@ -1,6 +1,4 @@
-// const { Resend } = require('resend');
-const nodemailer = require('nodemailer');
-const dns = require('node:dns').promises;
+
 
 async function sendemail(Url, email, firstName, lastName) {
 
@@ -54,47 +52,34 @@ async function sendemail(Url, email, firstName, lastName) {
 </html>
 `;
 
-  // --- Resend Logic (Commented Out) ---
-  // const resend = new Resend(process.env.RESEND_EMAIL_API_KEY);
-  // const { data, error } = await resend.emails.send({
-  //   from: process.env.SENDER_EMAIL,
-  //   to: email,
-  //   subject: 'Password Reset Request',
-  //   html: emailTemplate
-  // });
-  // if (error) {
-  //   throw new Error(`Resend provider error: ${error.message || 'Unknown'}`);
-  // }
-
-  // --- Nodemailer Logic ---
-  // Explicitly resolve IPv4 address because Render Free Tier breaks IPv6 routing on port 587/465
-  const { address } = await dns.lookup('smtp.gmail.com', { family: 4 });
-
-  const transporter = nodemailer.createTransport({
-    host: address,
-    port: 587,
-    secure: false, // Use TLS on port 587
-    requireTLS: true,
-    tls: {
-        servername: 'smtp.gmail.com'
-    },
-    auth: {
-      user: process.env.GMAIL_USER || 'varpedarsh11@gmail.com',
-      pass: (process.env.GMAIL_APP_PASSWORD || '').replace(/\s+/g, '')
-    }
-  });
-
-  const mailOptions = {
-    from: `"RideMate" <${process.env.GMAIL_USER || 'varpedarsh11@gmail.com'}>`,
-    to: email,
-    subject: 'Password Reset Request',
-    html: emailTemplate
-  };
-
+  // --- Brevo (Sendinblue) HTTP API Logic ---
   try {
-    await transporter.sendMail(mailOptions);
+    const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'api-key': process.env.BREVO_API_KEY,
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        sender: {
+          name: 'RideMate',
+          email: 'varpedarsh11@gmail.com' // Any email works if verified in Brevo
+        },
+        to: [
+          { email: email, name: firstName + " " + lastName }
+        ],
+        subject: 'Password Reset Request',
+        htmlContent: emailTemplate
+      })
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Brevo HTTP Error: ${response.status} - ${errorText}`);
+    }
   } catch (error) {
-    throw new Error(`Nodemailer provider error: ${error.message || 'Unknown'}`);
+    throw new Error(`Brevo provider error: ${error.message || 'Unknown'}`);
   }
 }
 
