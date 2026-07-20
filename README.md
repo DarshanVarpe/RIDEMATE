@@ -5,6 +5,26 @@ RideMate is a comprehensive ride-sharing platform designed to help university st
 
 ---
 
+## 🌐 Live Demo
+
+- **Live Application:** [https://ridemate-57i0.onrender.com](https://ridemate-57i0.onrender.com)
+- **GitHub Repository:** [https://github.com/DarshanVarpe/RideMate](https://github.com/DarshanVarpe/RideMate)
+
+---
+
+## 📸 Project Preview
+*(Add screenshots of your application here)*
+
+| Home Page | Dashboard |
+| --- | --- |
+| ![Home](https://via.placeholder.com/400x250?text=Home+Page+Screenshot) | ![Dashboard](https://via.placeholder.com/400x250?text=Dashboard+Screenshot) |
+
+| Create Ride | Login Page |
+| --- | --- |
+| ![Create Ride](https://via.placeholder.com/400x250?text=Create+Ride+Screenshot) | ![Login](https://via.placeholder.com/400x250?text=Login+Page+Screenshot) |
+
+---
+
 ## 🚀 Key Features
 
 - **🔐 Dual Authentication**: Secure login and signup system using traditional Email/Password (hashed via bcrypt + JWT) or seamless Single Sign-On (SSO) via **Google OAuth 2.0**.
@@ -31,6 +51,37 @@ RideMate is built on a modified **MERN** stack, adhering strictly to the **MVC (
 
 ### Cloud Services & DevOps
 ![Render](https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white) ![Docker](https://img.shields.io/badge/Docker-2496ED.svg?style=for-the-badge&logo=docker&logoColor=white) ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+
+---
+
+## 🏛️ Architecture & Structure
+
+### High-Level Architecture
+```text
+Client Browser (UI + WebSockets)
+       │
+       ▼
+Express.js Server (REST API + Socket.io)
+       │
+   ┌───┴───┐
+   ▼       ▼
+MongoDB  Google API
+(Data)   (Emails)
+```
+
+### Folder Structure
+```text
+RideMate/
+├── config/        # Passport.js and OAuth configuration
+├── controllers/   # Route handlers and business logic
+├── middlewares/   # JWT verification and route protection
+├── models/        # Mongoose database schemas
+├── routes/        # Express API routing definitions
+├── services/      # External integrations (Gmail API)
+├── public/        # Static assets (CSS, images)
+├── views/         # EJS UI templates
+└── server.js      # App entry point & WebSocket init
+```
 
 ---
 
@@ -68,6 +119,29 @@ RideMate is built on a modified **MERN** stack, adhering strictly to the **MVC (
 
 ---
 
+## 🔌 Core API Endpoints
+
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| **POST** | `/user/register` | Register a new user |
+| **POST** | `/user/login` | Authenticate user & return JWT |
+| **GET** | `/auth/google` | Trigger Google SSO login |
+| **POST** | `/ride/create` | Publish a new ride offer |
+| **POST** | `/ride/join` | Join an existing ride |
+| **POST** | `/user/forget-password` | Send password reset via Gmail API |
+
+---
+
+## 🔒 Security Features
+
+- **JWT Authentication:** Stateless, signed tokens stored securely in HTTP-only cookies.
+- **Password Hashing:** Passwords are cryptographically hashed using `bcrypt` before database insertion.
+- **Route Protection:** Custom middleware validates JWTs on all sensitive routes (Dashboard, Create Ride).
+- **Zod Validation:** Strict runtime schema validation on all user inputs to prevent NoSQL injection.
+- **Role-Based Rules:** Business logic prevents drivers from joining their own rides and prevents overbooking.
+
+---
+
 ## 🧠 Engineering Challenges Solved
 
 ### 1. Bypassing Cloud SMTP Firewalls
@@ -78,7 +152,20 @@ Upon deployment, the application threw persistent 500 Internal Server errors dur
 
 ---
 
-## 🚀 What's Next?
-- Develop a cross-platform mobile application using React Native.
-- Integrate an interactive Google Maps API for route visualization and fare calculation.
-- Implement an approval workflow for drivers to manually vet passengers before confirming a ride.
+## 🎓 Key Learnings
+
+- **WebSockets vs HTTP:** Learned to transition from stateless request-response models to stateful, bi-directional event emission using Socket.io.
+- **Cloud Deployments:** Gained hands-on experience debugging Docker containers and PaaS environments on Render.
+- **Database Security:** Discovered the critical importance of Zero-Trust network configurations (IP whitelisting) in MongoDB Atlas.
+- **OAuth Integration:** Successfully implemented third-party Single Sign-On (SSO) using Passport.js.
+
+---
+
+## 👨‍💻 Author
+
+**Darshan Varpe**
+- **GitHub:** [DarshanVarpe](https://github.com/DarshanVarpe)
+- **LinkedIn:** *(Add your LinkedIn link here)*
+
+## 📄 License
+This project is licensed under the MIT License.
