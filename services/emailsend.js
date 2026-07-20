@@ -64,7 +64,7 @@ async function sendemail(Url, email, firstName, lastName) {
       body: JSON.stringify({
         sender: {
           name: 'RideMate',
-          email: 'varpedarsh11@gmail.com' // Any email works if verified in Brevo
+          email: process.env.BREVO_SENDER_EMAIL || 'sigmamale2332@gmail.com' // MUST match the verified Brevo email
         },
         to: [
           { email: email, name: firstName + " " + lastName }
