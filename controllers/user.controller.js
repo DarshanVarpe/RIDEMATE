@@ -190,9 +190,7 @@ module.exports.forgetPassword = async (req, res, next) => {
             return res.status(400).json({ message: "This account uses Google login. Please continue with Google instead." });
         }
 
-        if (user.resetTokenExpiry && user.resetTokenExpiry > Date.now()) {
-            return res.status(429).json({ message: "You can request a reset link only once per hour." });
-        }
+
 
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
