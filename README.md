@@ -1,77 +1,84 @@
-# Ride Sharing Website
+# 🚗 RideMate 
+**A Full-Stack, Real-Time Ride-Sharing Web Application**
 
-## 📌 Overview
+RideMate is a comprehensive ride-sharing platform designed to help university students and commuters conveniently find and offer rides, reducing travel costs and promoting eco-friendly transit. It features a custom-built real-time WebSocket engine, secure third-party OAuth integrations, cloud-based media storage, and a fully containerized deployment pipeline.
 
-This is a ride-sharing platform designed to help university students conveniently find and offer rides, reducing travel costs and promoting eco-friendly commuting. Users can create ride offers, search for available rides, manage their trips, and receive real-time updates.
+---
 
-## 🚀 Features
+## 🚀 Key Features
 
-- **User Authentication**: Secure login and signup system.
-- **Offer a Ride**: Drivers can create ride offers.
-- **Find a Ride**: Passengers can search for available rides.
-- **Manage Rides**: Users can oversee their current rides.
-- **Ride History**: Log of all created, joined, and canceled rides.
-- **Notifications**: Alerts for ride cancellations or when a passenger leaves.
-- **Real-time Updates**: Live seat availability and ride notifications using WebSockets.
-- **Forgot Password**: Users can reset passwords via email link.
-- **Google Login**: Users can Login and Sign Up using their Google account.
+- **🔐 Dual Authentication**: Secure login and signup system using traditional Email/Password (hashed via bcrypt + JWT) or seamless Single Sign-On (SSO) via **Google OAuth 2.0**.
+- **🚘 Ride Management**: Drivers can create, offer, and manage rides. Passengers can search, filter, and join available rides in their area.
+- **⚡ Real-Time Engine**: Built with **Socket.io** to instantly broadcast live seat availability, new ride creations, and passenger cancellations to active users without requiring HTTP page reloads.
+- **☁️ Cloud Media Storage**: Integrated with **Cloudinary** (via Multer) to handle multipart-form image uploads for vehicles, keeping the database lightweight.
+- **✉️ Secure Password Recovery**: Custom-built password reset flow using short-lived JWT tokens and the official **Google Gmail API** (bypassing strict SMTP cloud firewalls for 100% deliverability).
+- **🛡️ Protected Routing**: Custom Express middleware to verify JWT signatures, ensuring private dashboards and API endpoints are strictly protected from unauthorized access.
 
-## 🛠 Tech Stack
+---
 
-![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![EJS](https://img.shields.io/badge/ejs-%23B4CA65.svg?style=for-the-badge&logo=ejs&logoColor=black) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) ![Socket.io](https://img.shields.io/badge/Socket.io-black?style=for-the-badge&logo=socket.io&badgeColor=010101) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white) ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) ![Render](https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white) ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white) ![Canva](https://img.shields.io/badge/Canva-%2300C4CC.svg?style=for-the-badge&logo=Canva&logoColor=white) ![Zod](https://img.shields.io/badge/Zod-7C3AED.svg?style=for-the-badge&logo=zod&logoColor=white) ![Docker](https://img.shields.io/badge/Docker-2496ED.svg?style=for-the-badge&logo=docker&logoColor=white)
+## 🛠 Tech Stack & Architecture
 
-- **Frontend**: EJS (Embedded JavaScript Templates) + Tailwind CSS
-- **Backend**: Node.js + Express.js
-- **Database**: MongoDB (via Mongoose)
-- **Authentication**: JWT (JSON Web Token) + Google OAuth
-- **File Storage**: Cloudinary
-- **Email Service**: Resend
-- **Real-time Updates**: WebSockets
+RideMate is built on a modified **MERN** stack, adhering strictly to the **MVC (Model-View-Controller)** design pattern to ensure scalability and separation of concerns.
 
-## 🔧 Installation
+### Backend (Server & Logic)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) ![Socket.io](https://img.shields.io/badge/Socket.io-black?style=for-the-badge&logo=socket.io&badgeColor=010101) ![Zod](https://img.shields.io/badge/Zod-7C3AED.svg?style=for-the-badge&logo=zod&logoColor=white) 
 
-1. Clone the repository:
+### Database (Data Layer)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) 
+
+### Frontend (Client UI)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![EJS](https://img.shields.io/badge/ejs-%23B4CA65.svg?style=for-the-badge&logo=ejs&logoColor=black) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) 
+
+### Cloud Services & DevOps
+![Render](https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white) ![Docker](https://img.shields.io/badge/Docker-2496ED.svg?style=for-the-badge&logo=docker&logoColor=white) ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+
+---
+
+## 🔧 Installation & Setup
+
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/DarshanVarpe/RideMate.git
    cd RideMate
    ```
-2. Install dependencies:
+2. **Install dependencies:**
    ```bash
    npm install
    ```
-3. Set up environment variables in a `.env` file (see below).
-4. Run the server:
+3. **Set up Environment Variables:**
+   Create a `.env` file in the root directory and add the following keys (see `.env.example` for details):
+   ```env
+   PORT=3000
+   MONGODB_URI=your_mongodb_cluster_uri
+   CLIENT_URL=http://localhost:3000
+   JWT_SECRET=your_secure_jwt_secret
+   CLOUDINARY_CLOUD_NAME=your_cloudinary_name
+   CLOUDINARY_API_KEY=your_cloudinary_key
+   CLOUDINARY_API_SECRET=your_cloudinary_secret
+   GOOGLE_CLIENT_ID=your_google_oauth_client_id
+   GOOGLE_CLIENT_SECRET=your_google_oauth_client_secret
+   GOOGLE_REFRESH_TOKEN=your_google_gmail_api_refresh_token
+   GMAIL_USER=your_personal_gmail_address
+   ```
+4. **Run the Server:**
    ```bash
    npm start
    ```
-   The app will be running at `http://localhost:3000`
+   The application will be running live at `http://localhost:3000`.
 
-## Environment Variables
+---
 
-Create a `.env` file in the root directory and add the following:
+## 🧠 Engineering Challenges Solved
 
-```env
-MONGODB_URI=mongodb+srv://your_username:your_password@your_cluster.mongodb.net/RideMate
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-JWT_SECRET=your_jwt_secret
-PORT=3000
-GMAIL_USER=your_personal_gmail_address
-CLIENT_URL=http://localhost:3000
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
-```
+### 1. Bypassing Cloud SMTP Firewalls
+When deploying to Render's free tier, standard outbound SMTP connections (ports 465/587) were entirely firewalled, completely breaking the Nodemailer password recovery system. To solve this without upgrading to a paid tier, the email service was completely re-architected. Nodemailer was replaced with the **official Google `googleapis` SDK**, enabling the backend to construct raw MIME emails and send them over standard HTTP (port 443) using OAuth 2.0 Refresh Tokens. This completely bypassed both the cloud firewall and modern 2024 DMARC spam rules, resulting in 100% email deliverability.
 
-## 🔑 User Authentication
+### 2. Zero-Trust Database Networking
+Upon deployment, the application threw persistent 500 Internal Server errors during Google Login. By analyzing the connection logs, it was identified that MongoDB Atlas enforces a strict zero-trust network policy, blocking Render's dynamic IP addresses. This was resolved by meticulously configuring the MongoDB Network Access List to explicitly allow the appropriate traffic ranges.
 
-- **Sign Up** with a valid email.
-- **Login** to access ride-sharing features.
-- **Forgot Password?** Reset using an emailed link.
+---
 
 ## 🚀 What's Next?
-
-- Develop a mobile app for iOS & Android.
-- Add a feature for drivers to approve passengers before joining a ride.
-
-
+- Develop a cross-platform mobile application using React Native.
+- Integrate an interactive Google Maps API for route visualization and fare calculation.
+- Implement an approval workflow for drivers to manually vet passengers before confirming a ride.
