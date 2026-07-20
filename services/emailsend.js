@@ -67,7 +67,10 @@ async function sendemail(Url, email, firstName, lastName) {
 
   // --- Nodemailer Logic ---
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false, // Use TLS on port 587
+    requireTLS: true,
     auth: {
       user: process.env.GMAIL_USER || 'varpedarsh11@gmail.com',
       pass: (process.env.GMAIL_APP_PASSWORD || '').replace(/\s+/g, '')
