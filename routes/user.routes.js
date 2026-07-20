@@ -40,6 +40,9 @@ router.get("/reset-password/:token", restrictToCorrectResetLink, (req, res) => {
 router.get('/home', restrictToUserlogin, (req, res) => {
     res.render('home.ejs');
 });
+router.get('/about', restrictToUserlogin, (req, res) => {
+    res.render('about.ejs');
+});
 router.get('/find_Ride', restrictToUserlogin, (req, res) => {
     res.render('findRide.ejs');
 });

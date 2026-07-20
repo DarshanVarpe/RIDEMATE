@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/fonts') %>
+    <title>About Us - RideMate</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body class="font-[Inter]">
+
+    <div class="bg-gray-100 min-h-screen px-4 pt-6 pb-12">
+        <%- include('homePartials/profile') %>
+        <%- include('homePartials/menu') %>
+
+        <div class="max-w-4xl mx-auto mt-8 bg-white rounded-2xl shadow-sm p-8">
+            <h1 class="text-3xl font-bold text-[#6d74fc] mb-6">
+                About <span class="text-gray-800">RideMate</span>
+            </h1>
+
+            <div class="space-y-6 text-gray-600 text-lg leading-relaxed">
+                <p>
+                    Welcome to <strong class="text-[#6d74fc]">RideMate</strong>, the premier real-time ride-sharing platform designed exclusively for university students and daily commuters.
+                </p>
+
+                <p>
+                    Our mission is simple: to make commuting more affordable, environmentally friendly, and socially connected. Whether you're a driver looking to split gas costs or a passenger looking for a convenient lift, RideMate connects you instantly with people heading your way.
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-8 mt-8 mb-8">
+                    <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
+                        <h3 class="font-bold text-[#6d74fc] text-xl mb-3 flex items-center">
+                            <span class="text-2xl mr-2">🌍</span> Eco-Friendly
+                        </h3>
+                        <p class="text-sm">By sharing rides, we actively reduce the number of vehicles on the road, lowering our collective carbon footprint and contributing to a greener campus environment.</p>
+                    </div>
+
+                    <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
+                        <h3 class="font-bold text-[#6d74fc] text-xl mb-3 flex items-center">
+                            <span class="text-2xl mr-2">💸</span> Cost-Effective
+                        </h3>
+                        <p class="text-sm">Why pay full price for daily travel? RideMate allows students to split fuel costs fairly, making education and commuting vastly more affordable for everyone.</p>
+                    </div>
+                </div>
+
+                <h2 class="text-2xl font-bold text-gray-800 mt-8 mb-4">How It Works</h2>
+                <ul class="list-disc pl-6 space-y-3">
+                    <li><strong>Offer a Ride:</strong> Drivers can easily publish a ride by entering their starting point, destination, and available seats.</li>
+                    <li><strong>Find a Ride:</strong> Passengers can search for rides matching their route and request a seat in real-time.</li>
+                    <li><strong>Live Updates:</strong> Powered by WebSockets, you get instant notifications when someone joins your ride or if a ride is completed.</li>
+                </ul>
+            </div>
+            
+            <div class="mt-10 pt-6 border-t border-gray-100 text-center">
+                <p class="text-gray-500 italic">Built with passion by Darshan Varpe</p>
+                <a href="/home" class="inline-block mt-4 bg-[#6d74fc] hover:bg-blue-600 text-white font-medium px-6 py-2 rounded-full transition-colors">
+                    Back to Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+</html>
