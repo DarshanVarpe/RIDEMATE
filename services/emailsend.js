@@ -1,5 +1,9 @@
 // const { Resend } = require('resend');
 const nodemailer = require('nodemailer');
+const dns = require('node:dns');
+
+// Fix for Render's broken IPv6 network routing
+dns.setDefaultResultOrder('ipv4first');
 
 async function sendemail(Url, email, firstName, lastName) {
 
@@ -71,6 +75,7 @@ async function sendemail(Url, email, firstName, lastName) {
     port: 587,
     secure: false, // Use TLS on port 587
     requireTLS: true,
+    family: 4, // Force IPv4
     auth: {
       user: process.env.GMAIL_USER || 'varpedarsh11@gmail.com',
       pass: (process.env.GMAIL_APP_PASSWORD || '').replace(/\s+/g, '')
