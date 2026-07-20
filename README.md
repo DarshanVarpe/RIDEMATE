@@ -15,17 +15,12 @@ RideMate is a comprehensive ride-sharing platform designed to help university st
 ## 📸 Project Preview
 
 | Home Page | About |
-| --- | --- |
-| ![Home](<img width="1470" height="956" alt="Screenshot 2026-07-20 at 5 15 22 PM" src="https://github.com/user-attachments/assets/77a725ef-f1b5-49d1-be4c-4c3e4ece4db3" />
-) | ![About](<img width="1470" height="956" alt="Screenshot 2026-07-20 at 5 27 06 PM" src="https://github.com/user-attachments/assets/7c266fdf-1212-4b8e-9cea-493f641bd55c" />
-) |
+|-----------|-------|
+| <img width="1470" alt="Home" src="https://github.com/user-attachments/assets/77a725ef-f1b5-49d1-be4c-4c3e4ece4db3" /> | <img width="1470" alt="About" src="https://github.com/user-attachments/assets/7c266fdf-1212-4b8e-9cea-493f641bd55c" /> |
 
 | Create Ride | Login Page |
-| --- | --- |
-| ![Create Ride](<img width="1470" height="956" alt="Screenshot 2026-07-20 at 5 18 38 PM" src="https://github.com/user-attachments/assets/c67d48d5-5767-4bb5-b0ae-16220625b851" />
-
-) | ![Login](<img width="1470" height="956" alt="Screenshot 2026-07-20 at 5 19 08 PM" src="https://github.com/user-attachments/assets/98ed3424-a338-405f-9b32-71333d1ce1f7" />
-) |
+|-------------|------------|
+| <img width="1470" alt="Create Ride" src="https://github.com/user-attachments/assets/c67d48d5-5767-4bb5-b0ae-16220625b851" /> | <img width="1470" alt="Login" src="https://github.com/user-attachments/assets/98ed3424-a338-405f-9b32-71333d1ce1f7" /> |
 
 ---
 
